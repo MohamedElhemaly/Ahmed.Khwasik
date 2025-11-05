@@ -663,10 +663,27 @@
             font-weight: 600;
         }
 
-        /* Contact Section Updates */
+        /* Contact Section - IMPROVED */
+        .contact {
+            background-color: var(--light-bg);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
         .contact-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 1.5rem;
             background-color: var(--white);
             padding: 2rem;
@@ -700,7 +717,27 @@
             border-left-color: var(--accent-color);
         }
 
-        .contact-text {
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(26, 82, 118, 0.1), rgba(52, 152, 219, 0.1));
+            border-radius: 50%;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .contact-details {
             flex: 1;
         }
 
@@ -708,7 +745,7 @@
             font-size: 0.9rem;
             color: var(--secondary-color);
             font-weight: 600;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -718,50 +755,80 @@
             color: var(--text-color);
             font-weight: 500;
             margin: 0;
-            line-height: 1.4;
+            line-height: 1.5;
+            word-break: break-all;
         }
 
-        .contact-item i {
-            font-size: 1.8rem;
+        .contact-email {
             color: var(--primary-color);
-            width: 40px;
+            font-weight: 600;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
             text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
             transition: var(--transition);
+            font-family: inherit;
         }
 
-        .contact-item:hover i {
-            color: var(--accent-color);
-            transform: scale(1.1);
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
 
-        /* تأثير النقر */
-        .contact-item:active {
-            transform: scale(0.98);
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
         }
 
-        /* إضافة أيقونة السهم */
-        .contact-item::after {
-            content: '↗';
-            position: absolute;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-            opacity: 0;
+        .form-submit {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
             transition: var(--transition);
+            width: 100%;
         }
 
-        .contact-item:hover::after {
-            opacity: 1;
-            transform: translateY(-50%) translateX(5px);
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
         }
 
         .references {
@@ -770,11 +837,12 @@
             font-style: italic;
             color: #666;
             padding: 1.5rem;
-            background-color: var(--light-bg);
+            background-color: var(--white);
             border-radius: 8px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            border: 1px solid #e0e0e0;
         }
 
         /* Footer */
@@ -817,6 +885,11 @@
             .profile-image-container {
                 width: 250px;
                 height: 250px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
 
@@ -929,16 +1002,8 @@
                 height: 220px;
             }
 
-            .contact-item {
+            .contact-form {
                 padding: 1.5rem;
-            }
-
-            .contact-item::after {
-                right: 1.5rem;
-            }
-
-            .contact-value {
-                font-size: 1rem;
             }
         }
 
@@ -991,12 +1056,8 @@
                 gap: 1rem;
             }
 
-            .contact-item i {
-                margin-bottom: 0.5rem;
-            }
-
-            .contact-item::after {
-                display: none;
+            .contact-icon {
+                margin: 0 auto;
             }
 
             .nav-menu {
@@ -1056,7 +1117,7 @@
                 <div class="hero-image">
                     <div class="profile-image-container">
                         <!-- ضع مسار صورتك هنا -->
-                        <img src="images/profile_photo.jpg" alt="Ahmed Khwasik" class="profile-image" id="profile-pic">
+                        <img src="PATH_TO_YOUR_IMAGE" alt="Ahmed Khwasik" class="profile-image" id="profile-pic">
 
                         <!-- العنصر النائب الذي سيختفي عند إضافة الصورة -->
                         <div class="image-placeholder" id="image-placeholder">
@@ -1181,42 +1242,82 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section - IMPROVED -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Contact Information</h2>
-            <div class="contact-info">
-                <div class="contact-item" onclick="openMap()">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div class="contact-text">
-                        <p class="contact-label">Address</p>
-                        <p class="contact-value">7 Dawood El-Azab St., Damanhour, Beheira</p>
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item" onclick="openMap()">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p class="contact-label">Location</p>
+                            <p class="contact-value">7 Dawood El-Azab St., Damanhour, Beheira, Egypt</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item" onclick="callPhone()">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p class="contact-label">Phone Number</p>
+                            <p class="contact-value">+20 102 675 7026</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item" onclick="sendEmail()">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p class="contact-label">Email Address</p>
+                            <p class="contact-value contact-email">ahmedkhwasik102@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item" onclick="openLinkedIn()">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p class="contact-label">LinkedIn Profile</p>
+                            <p class="contact-value">Ahmed Khwasik</p>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-item" onclick="callPhone()">
-                    <i class="fas fa-phone"></i>
-                    <div class="contact-text">
-                        <p class="contact-label">Phone</p>
-                        <p class="contact-value">01026757026</p>
-                    </div>
-                </div>
-                <div class="contact-item" onclick="sendEmail()">
-                    <i class="fas fa-envelope"></i>
-                    <div class="contact-text">
-                        <p class="contact-label">Email</p>
-                        <p class="contact-value">ahmedkhwasik@gmail.com</p>
-                    </div>
-                </div>
-                <div class="contact-item" onclick="openLinkedIn()">
-                    <i class="fab fa-linkedin"></i>
-                    <div class="contact-text">
-                        <p class="contact-label">LinkedIn</p>
-                        <p class="contact-value">Ahmed Khwasik</p>
-                    </div>
+
+                <div class="contact-form">
+                    <h3 class="form-title">Send Me a Message</h3>
+                    <form id="messageForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Your Name</label>
+                            <input type="text" id="name" class="form-input" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Your Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="Enter your email address"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-input" placeholder="What is this regarding?"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">Your Message</label>
+                            <textarea id="message" class="form-textarea" placeholder="Type your message here..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
                 </div>
             </div>
+
             <div class="references">
-                <p><strong>References:</strong> Available upon request</p>
+                <p><strong>Professional References:</strong> Available upon request</p>
             </div>
         </div>
     </section>
@@ -1390,14 +1491,14 @@
         // وظائف الاتصال الجديدة
         function openMap() {
             // افتح العنوان في خرائط جوجل
-            const address = "7 Dawood El-Azab St., Damanhour, Beheira";
+            const address = "7 Dawood El-Azab St., Damanhour, Beheira, Egypt";
             const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
             window.open(mapsUrl, '_blank');
         }
 
         function callPhone() {
             // اتصل بالرقم
-            window.location.href = "tel:01026757026";
+            window.location.href = "tel:+201026757026";
         }
 
         function sendEmail() {
@@ -1408,7 +1509,7 @@
         function openLinkedIn() {
             // افتح ملف LinkedIn الشخصي
             // يمكن استبدال الرابط برابط الملف الشخصي الفعلي
-            const linkedinUrl = "https://www.linkedin.com/in/ahmed-khwasik";
+            const linkedinUrl = "https://www.linkedin.com/in/ahmed-khwasik-000341211/";
             window.open(linkedinUrl, '_blank');
         }
 
@@ -1420,6 +1521,24 @@
                     this.style.transform = 'translateY(-5px)';
                 }, 150);
             });
+        });
+
+        // Form submission handling
+        document.getElementById('messageForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Here you would typically send the form data to a server
+            // For now, we'll just show a success message
+            alert(`Thank you ${name}! Your message has been sent successfully. I will get back to you soon at ${email}.`);
+
+            // Reset the form
+            this.reset();
         });
     </script>
 </body>
